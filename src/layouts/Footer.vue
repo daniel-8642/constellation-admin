@@ -1,5 +1,5 @@
 <template>
-  <div>Footer</div>
+  <div>Ant Design VUE ©2021 Created by daniel</div>
 </template>
 
 <script>

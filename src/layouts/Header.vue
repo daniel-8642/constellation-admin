@@ -1,5 +1,5 @@
 <template>
-  <div>头</div>
+  <div>写点东西</div>
 </template>
 
 <script>

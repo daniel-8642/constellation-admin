@@ -1,9 +1,28 @@
 <template>
   <div>
-    <Header />
-    <SiderMenu />
-    <Footer />
-    <router-view></router-view>
+    <a-layout id="components-layout-demo-side" style="min-height: 100vh">
+      <a-layout-sider v-model="collapsed" collapsible>
+        <div class="logo" />
+        <SiderMenu />
+      </a-layout-sider>
+      <a-layout>
+        <a-layout-header style="display: flex; background: #fff; padding: 0">
+          <a-icon
+            class="trigger"
+            :type="collapsed ? 'menu-unfold' : 'menu-fold'"
+            @click="collapsed = !collapsed"
+          ></a-icon>
+          <Header style="margin: auto" />
+        </a-layout-header>
+        <a-layout-content style="margin: 0 16px">
+          <router-view></router-view>
+        </a-layout-content>
+        <a-layout-footer style="text-align: center">
+          <Footer />
+        </a-layout-footer>
+      </a-layout>
+    </a-layout>
+    <SettingDrawer></SettingDrawer>
   </div>
 </template>
 
@@ -11,11 +30,30 @@
 import Header from "@/layouts/Header";
 import Footer from "@/layouts/Footer";
 import SiderMenu from "@/layouts/SiderMenu";
+import SettingDrawer from "../components/SettingDrawer";
 
 export default {
   name: "BasicLayout",
-  components: { Footer, SiderMenu, Header },
+  data() {
+    return {
+      collapsed: false,
+    };
+  },
+  components: { Footer, SiderMenu, Header, SettingDrawer },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#components-layout-demo-side .logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+.trigger {
+  padding: 25px 20px;
+  position: absolute;
+}
+.trigger:hover {
+  background: #eeeeee;
+}
+</style>
