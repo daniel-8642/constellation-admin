@@ -1,13 +1,22 @@
 <template>
-  <div>
+  <!--  todo:弄懂:class="[`nav-theme-${navTheme}`, `nav-layout-${navLayout}`]"-->
+  <div :class="[`nav-theme-${navTheme}`, `nav-layout-${navLayout}`]">
     <a-layout id="components-layout-demo-side" style="min-height: 100vh">
-      <a-layout-sider v-model="collapsed" collapsible>
-        <div class="logo" />
-        <SiderMenu />
+      <a-layout-sider
+        v-if="navLayout === 'left'"
+        :theme="navTheme"
+        :trigger="null"
+        v-model="collapsed"
+        style="width: 200px"
+        collapsible
+      >
+        <div class="logo">Ant Design Vue Pro</div>
+        <SiderMenu :theme="navTheme" />
       </a-layout-sider>
       <a-layout>
         <a-layout-header style="display: flex; background: #fff; padding: 0">
           <a-icon
+            v-if="navLayout === 'left'"
             class="trigger"
             :type="collapsed ? 'menu-unfold' : 'menu-fold'"
             @click="collapsed = !collapsed"
@@ -22,7 +31,7 @@
         </a-layout-footer>
       </a-layout>
     </a-layout>
-    <SettingDrawer></SettingDrawer>
+    <SettingDrawer />
   </div>
 </template>
 
@@ -40,6 +49,14 @@ export default {
     };
   },
   components: { Footer, SiderMenu, Header, SettingDrawer },
+  computed: {
+    navTheme() {
+      return this.$route.query.navTheme || "dark";
+    },
+    navLayout() {
+      return this.$route.query.navLayout || "left";
+    },
+  },
 };
 </script>
 
@@ -55,5 +72,16 @@ export default {
 }
 .trigger:hover {
   background: #eeeeee;
+}
+
+.logo {
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.nav-theme-dark >>> .logo {
+  color: #ffffff;
 }
 </style>

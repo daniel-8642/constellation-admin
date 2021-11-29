@@ -1,7 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import findLast from "lodash/findLast";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
+import { notification } from "ant-design-vue";
+import { check, isLogin } from "@/utils/auth";
 
 Vue.use(VueRouter);
 
@@ -121,14 +124,14 @@ const routes = [
       // Exception
       {
         path: "/exception",
-        name: "exception",
+        // name: "exception",
         component: { render: (h) => h("router-view") },
         redirect: "/exception/403",
         meta: { title: "异常页", icon: "warning", authority: ["admin"] },
         children: [
           {
             path: "/exception/403",
-            name: "exception403",
+            // name: "exception403",
             component: () =>
               import(
                 /* webpackChunkName: "exception" */ "@/views/Exception/403"
@@ -137,7 +140,7 @@ const routes = [
           },
           {
             path: "/exception/404",
-            name: "exception404",
+            // name: "exception404",
             component: () =>
               import(
                 /* webpackChunkName: "exception" */ "@/views/Exception/404"
@@ -146,7 +149,7 @@ const routes = [
           },
           {
             path: "/exception/500",
-            name: "exception500",
+            // name: "exception500",
             component: () =>
               import(
                 /* webpackChunkName: "exception" */ "@/views/Exception/500"
@@ -206,9 +209,28 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
-
+// 在改变风格的时候不出现加载进度条
 router.beforeEach((to, from, next) => {
-  NProgress.start();
+  if (to.path !== from.path) {
+    NProgress.start();
+  }
+  const record = findLast(to.matched, (record) => record.meta.authority);
+  if (record && !check(record.meta.authority)) {
+    if (!isLogin() && to.path !== "/user/login") {
+      next({
+        path: "/user/login",
+      });
+    } else if (to.path !== "/403") {
+      notification.error({
+        message: "403",
+        description: "你没有权限,请联系管理员",
+      });
+      next({
+        path: "/403",
+      });
+    }
+    NProgress.done();
+  }
   next();
 });
 
