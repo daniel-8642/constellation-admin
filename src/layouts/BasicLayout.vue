@@ -15,6 +15,7 @@
       </a-layout-sider>
       <a-layout>
         <a-layout-header style="display: flex; background: #fff; padding: 0">
+          <!--          v-auth="['admin']"-->
           <a-icon
             v-if="navLayout === 'left'"
             class="trigger"
@@ -31,7 +32,9 @@
         </a-layout-footer>
       </a-layout>
     </a-layout>
-    <SettingDrawer />
+    <Authorized :authority="['admin', 'user']">
+      <SettingDrawer />
+    </Authorized>
   </div>
 </template>
 
@@ -39,7 +42,8 @@
 import Header from "@/layouts/Header";
 import Footer from "@/layouts/Footer";
 import SiderMenu from "@/layouts/SiderMenu";
-import SettingDrawer from "../components/SettingDrawer";
+import SettingDrawer from "@/components/SettingDrawer";
+import Authorized from "@/components/Authorized";
 
 export default {
   name: "BasicLayout",
@@ -48,7 +52,7 @@ export default {
       collapsed: false,
     };
   },
-  components: { Footer, SiderMenu, Header, SettingDrawer },
+  components: { Authorized, Footer, SiderMenu, Header, SettingDrawer },
   computed: {
     navTheme() {
       return this.$route.query.navTheme || "dark";
