@@ -48,7 +48,7 @@ const routes = [
       // dashboard
       {
         path: "/",
-        redirect: "/dashboard/analysis",
+        redirect: "/dashboard/viewanalysis",
       },
       {
         path: "/dashboard",
@@ -57,12 +57,21 @@ const routes = [
         component: { render: (h) => h("router-view") },
         children: [
           {
-            path: "/dashboard/analysis",
+            path: "/dashboard/viewanalysis",
             name: "analysis",
-            meta: { title: "分析页" },
+            meta: { title: "近期访问" },
             component: () =>
               import(
-                /* webpackChunkName: "dashboard" */ "../views/Dashboard/Analysis"
+                /* webpackChunkName: "dashboard" */ "../views/Dashboard/ViewAnalysis"
+              ),
+          },
+          {
+            path: "/dashboard/consanalysis",
+            name: "analysis",
+            meta: { title: "星座浏览" },
+            component: () =>
+              import(
+                /* webpackChunkName: "dashboard" */ "../views/Dashboard/constellationAnalysis"
               ),
           },
         ],
@@ -72,52 +81,25 @@ const routes = [
         path: "/form",
         name: "form",
         component: { render: (h) => h("router-view") },
-        meta: { icon: "form", title: "表单", authority: ["admin"] },
+        meta: { icon: "form", title: "数据统计", authority: ["admin"] },
         children: [
           {
-            path: "/form/basic-form",
-            name: "basicform",
-            meta: { title: "基础表单" },
+            path: "/form/add-user-form",
+            name: "adduserform",
+            meta: { title: "添加用户" },
             component: () =>
-              import(/* webpackChunkName: "form" */ "../views/Forms/BasicForm"),
+              import(
+                /* webpackChunkName: "form" */ "../views/Forms/AddUserForm"
+              ),
           },
           {
-            path: "/form/step-form",
-            name: "stepform",
-            hideChildrenInMenu: true,
-            meta: { title: "分布表单" },
+            path: "/form/update-passwd-form",
+            name: "updatepasswdform",
+            meta: { title: "修改密码" },
             component: () =>
-              import(/* webpackChunkName: "form" */ "../views/Forms/StepForm"),
-            children: [
-              {
-                path: "/form/step-form",
-                redirect: "/form/step-form/info",
-              },
-              {
-                path: "/form/step-form/info",
-                name: "info",
-                component: () =>
-                  import(
-                    /* webpackChunkName: "form" */ "../views/Forms/StepForm/Step1"
-                  ),
-              },
-              {
-                path: "/form/step-form/confirm",
-                name: "confirm",
-                component: () =>
-                  import(
-                    /* webpackChunkName: "form" */ "../views/Forms/StepForm/Step2"
-                  ),
-              },
-              {
-                path: "/form/step-form/result",
-                name: "result",
-                component: () =>
-                  import(
-                    /* webpackChunkName: "form" */ "../views/Forms/StepForm/Step3"
-                  ),
-              },
-            ],
+              import(
+                /* webpackChunkName: "form" */ "../views/Forms/UpdatePasswdForm"
+              ),
           },
         ],
       },
@@ -155,34 +137,6 @@ const routes = [
                 /* webpackChunkName: "exception" */ "@/views/Exception/500"
               ),
             meta: { title: "500" },
-          },
-        ],
-      },
-      // Profile
-      {
-        path: "/profile",
-        name: "profile",
-        component: { render: (h) => h("router-view") },
-        redirect: "/profile/basic",
-        meta: { title: "详情页", icon: "profile", authority: ["admin"] },
-        children: [
-          {
-            path: "/profile/basic",
-            name: "basic",
-            component: () =>
-              import(
-                /* webpackChunkName: "profile" */ "@/views/Profile/BasicProfile"
-              ),
-            meta: { title: "基础详情页" },
-          },
-          {
-            path: "/profile/advanced",
-            name: "advanced",
-            component: () =>
-              import(
-                /* webpackChunkName: "profile" */ "@/views/Profile/AdvancedProfile"
-              ),
-            meta: { title: "高级详情页" },
           },
         ],
       },

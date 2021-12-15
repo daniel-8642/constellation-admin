@@ -4,6 +4,8 @@ import router from "./router";
 import store from "./store";
 import Authorized from "@/components/Authorized";
 import Auth from "@/directives/auth";
+import md5 from "js-md5";
+import sha256 from "js-sha256";
 import {
   Button,
   Layout,
@@ -16,7 +18,8 @@ import {
 } from "ant-design-vue";
 
 Vue.config.productionTip = false;
-
+Vue.prototype.$md5 = md5;
+Vue.prototype.$sha256 = sha256;
 Vue.component("Authorized", Authorized);
 Vue.use(Auth);
 Vue.use(Button);

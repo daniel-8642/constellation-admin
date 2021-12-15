@@ -4,6 +4,14 @@
   </div>
 </template>
 
+<script>
+export default {
+  mounted() {
+    sessionStorage.setItem("key", "3kEx*Jm9vGN3UKGaalpk");
+  },
+};
+</script>
+
 <style lang="less">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
