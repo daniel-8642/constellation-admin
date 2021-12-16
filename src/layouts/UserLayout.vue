@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div class="desc">Ant Design View Pro</div>
     <router-view></router-view>
   </div>
 </template>
