@@ -37,21 +37,29 @@ export default {
           sign: sign,
         },
       }).then((response) => {
-        console.log(response.data);
+        console.log(response);
+        let date = [];
+        let time = [];
+        response.data.data.forEach((item) => {
+          date.push(item.date);
+          time.push(item.count);
+        });
+        console.log(date);
+        console.log(time);
         this.chartOption = {
           title: {
             text: "浏览次数统计",
           },
           tooltip: {},
           xAxis: {
-            data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
+            data: date,
           },
           yAxis: {},
           series: [
             {
-              name: "销量",
+              name: "浏览次数",
               type: "bar",
-              data: response.data,
+              data: time,
             },
           ],
         };

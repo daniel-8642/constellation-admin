@@ -53,7 +53,7 @@ const routes = [
       {
         path: "/dashboard",
         name: "dashboard",
-        meta: { icon: "dashboard", title: "仪表盘" },
+        meta: { icon: "dashboard", title: "数据统计" },
         component: { render: (h) => h("router-view") },
         children: [
           {
@@ -81,7 +81,7 @@ const routes = [
         path: "/form",
         name: "form",
         component: { render: (h) => h("router-view") },
-        meta: { icon: "form", title: "数据统计", authority: ["admin"] },
+        meta: { icon: "form", title: "用户管理", authority: ["admin"] },
         children: [
           {
             path: "/form/add-user-form",

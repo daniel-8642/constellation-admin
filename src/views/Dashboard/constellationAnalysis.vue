@@ -15,31 +15,48 @@ export default {
     this.interval = setInterval(() => {
       this.getChartData();
       this.chartOption = { ...this.chartOption };
-    }, 3000);
+    }, 30000);
   },
   methods: {
     getChartData() {
+      sessionStorage.setItem("session", "d5104dc76695721d");
+      let timestamp = new Date().getTime();
+      let rand = Math.ceil(100000000000 * Math.random()) + "";
+      let sign = this.$sha256(
+        this.$md5(sessionStorage.getItem("session")) +
+          timestamp +
+          sessionStorage.getItem("key") +
+          rand
+      );
       request({
-        url: "/api/dashboard/chart",
+        url: "/api/data/starcount/" + sessionStorage.getItem("session"),
         method: "get",
-        params: {
-          ID: 12345,
+        headers: {
+          timestamp: timestamp,
+          rand: rand,
+          sign: sign,
         },
       }).then((response) => {
+        let name = [];
+        let count = [];
+        response.data.data.forEach((item) => {
+          name.push(item.name);
+          count.push(item.count);
+        });
         this.chartOption = {
           title: {
-            text: "ECharts 入门示例",
+            text: "星座查询统计",
           },
           tooltip: {},
           xAxis: {
-            data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
+            data: name,
           },
           yAxis: {},
           series: [
             {
-              name: "销量",
+              name: "次数",
               type: "bar",
-              data: response.data,
+              data: count,
             },
           ],
         };
