@@ -2,10 +2,8 @@
   <div class="login">
     <section>
       <div class="context">
-        <div class="head">
-          <img class="logo" src="@/assets/code.png" alt="logo" />
-          <h2>用户登录</h2>
-        </div>
+        <img alt="logo" class="logo" src="@/assets/code.png" />
+        <h2 class="title">用户登录</h2>
         <a-form
           id="components-form-demo-normal-login"
           :form="form"
@@ -26,8 +24,8 @@
             >
               <a-icon
                 slot="prefix"
-                type="user"
                 style="color: rgba(0, 0, 0, 0.25)"
+                type="user"
               />
             </a-input>
           </a-form-item>
@@ -41,19 +39,18 @@
                   ],
                 },
               ]"
-              type="password"
               placeholder="Password"
+              type="password"
             >
               <a-icon
                 slot="prefix"
-                type="lock"
                 style="color: rgba(0, 0, 0, 0.25)"
+                type="lock"
               />
             </a-input>
           </a-form-item>
           <a-form-item>
             <a-checkbox
-              style="float: left"
               v-decorator="[
                 'remember',
                 {
@@ -61,14 +58,15 @@
                   initialValue: true,
                 },
               ]"
+              style="float: left"
             >
               Remember me
             </a-checkbox>
             <a class="login-form-forgot" href=""> Forgot password </a>
             <a-button
-              type="primary"
-              html-type="submit"
               class="login-form-button"
+              html-type="submit"
+              type="primary"
             >
               Log in
             </a-button>
@@ -84,8 +82,8 @@
         </div>
       </div>
       <div
-        class="ground background-walk-y"
         id="image"
+        class="ground background-walk-y"
         data-background="https://source.unsplash.com/collection/72610290"
       >
         <div class="text-box">
@@ -184,15 +182,18 @@ export default {
     flex-wrap: nowrap;
     flex-direction: column;
     justify-content: space-between;
-    .head {
-      margin-top: 30px;
-      .logo {
-        float: left;
-        height: 60px;
-        width: 60px;
-      }
+    .logo {
+      margin-top: 50px;
+      margin-bottom: -30px;
+      float: left;
+      height: 60px;
+      width: 60px;
+    }
+    .title {
+      float: right;
     }
   }
+
   .ground {
     position: absolute;
     height: 100vh;
@@ -201,6 +202,7 @@ export default {
     top: 0;
 
     background-image: url("https://source.unsplash.com/collection/72610290");
+
     .text-box {
       height: 250px;
       width: 450px;
@@ -208,12 +210,14 @@ export default {
       right: 0;
       bottom: 0;
       color: #ffffff;
+
       .hellow {
         color: #ffffff;
         font-size: 50px;
         padding-top: 30px;
         padding-bottom: 60px;
       }
+
       .links {
         color: #ffffff;
       }
@@ -226,11 +230,13 @@ export default {
     .context {
       width: 100%;
     }
+
     .ground {
       display: none;
     }
   }
 }
+
 .background-walk-y {
   background-repeat: no-repeat;
   background-position: 0 0%;
@@ -242,6 +248,7 @@ export default {
   animation-timing-function: linear;
   background-size: 100%;
 }
+
 @keyframes backgroundWalkY {
   0% {
     background-position: 0 0%;
@@ -254,9 +261,11 @@ export default {
 #components-form-demo-normal-login .login-form {
   max-width: 300px;
 }
+
 #components-form-demo-normal-login .login-form-forgot {
   float: right;
 }
+
 #components-form-demo-normal-login .login-form-button {
   width: 100%;
 }

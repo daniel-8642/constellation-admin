@@ -10,7 +10,7 @@
         style="width: 200px"
         collapsible
       >
-        <div class="logo">Ant Design Vue Pro</div>
+        <div class="logo">星座运势后台</div>
         <SiderMenu :theme="navTheme" />
       </a-layout-sider>
       <a-layout>
