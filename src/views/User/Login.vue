@@ -13,10 +13,12 @@
           <a-form-item>
             <a-input
               v-decorator="[
-                'userName',
+                'Username',
                 {
+                  initialValue: defaultusername,
                   rules: [
-                    { required: true, message: 'Please input your username!' },
+                    { required: true, message: '请输入用户名!' },
+                    { required: true, min: 6, message: '不能小于5位' },
                   ],
                 },
               ]"
@@ -32,10 +34,12 @@
           <a-form-item>
             <a-input
               v-decorator="[
-                'password',
+                'Password',
                 {
+                  initialValue: defaultpasswd,
                   rules: [
-                    { required: true, message: 'Please input your Password!' },
+                    { required: true, message: '请输入用户名!' },
+                    { required: true, min: 6, message: '不能小于5位' },
                   ],
                 },
               ]"
@@ -67,6 +71,7 @@
               class="login-form-button"
               html-type="submit"
               type="primary"
+              @click="handleSubmit"
             >
               Log in
             </a-button>
@@ -102,6 +107,12 @@
 </template>
 
 <script>
+import { pullCurrentAuthority } from "@/utils/auth";
+import request from "@/utils/request";
+import router from "@/router";
+import sha256 from "js-sha256";
+import md5 from "js-md5";
+
 export default {
   name: "Login",
   data() {
@@ -114,7 +125,6 @@ export default {
   },
   mounted() {
     var myDate = new Date();
-    console.log(myDate.getHours());
     switch (myDate.getHours()) {
       case 23:
       case 0:
@@ -153,13 +163,61 @@ export default {
         this.hellow = "晚上好!";
         break;
     }
+    if (sessionStorage.getItem("session") !== null) pullCurrentAuthority();
+  },
+  computed: {
+    defaultpasswd() {
+      return sessionStorage.getItem("Password");
+    },
+    defaultusername() {
+      return sessionStorage.getItem("Username");
+    },
   },
   methods: {
     handleSubmit(e) {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          console.log("Received values of form: ", values);
+          if (values.remember) {
+            sessionStorage.setItem("Username", values.Username);
+            sessionStorage.setItem("Password", values.Password);
+          } else {
+            sessionStorage.removeItem("Username");
+            sessionStorage.removeItem("Password");
+          }
+          request({
+            method: "get",
+            url: "/api/user/login/" + values.Username + "/" + values.Password,
+          })
+            .then((response) => {
+              sessionStorage.setItem("session", response.data.session);
+
+              let timestamp = new Date().getTime();
+              let rand = Math.ceil(100000000000 * Math.random()) + "";
+              let sign = sha256(
+                md5(sessionStorage.getItem("session")) +
+                  timestamp +
+                  sessionStorage.getItem("key") +
+                  rand
+              );
+              return request({
+                method: "get",
+                url: "/api/user/auth/" + sessionStorage.getItem("session"),
+                headers: {
+                  timestamp: timestamp,
+                  rand: rand,
+                  sign: sign,
+                },
+              });
+            })
+            .then((response) => {
+              console.log(response);
+              sessionStorage.setItem("auth", response.data.auth);
+              router.push("/");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
       });
     },

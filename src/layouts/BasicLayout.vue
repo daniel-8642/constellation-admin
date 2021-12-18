@@ -14,12 +14,17 @@
         <SiderMenu :theme="navTheme" />
       </a-layout-sider>
       <a-layout>
-        <a-layout-header style="display: flex; background: #fff; padding: 0">
-          <!--          v-auth="['admin']"-->
+        <a-layout-header
+          style="display: flex; padding: 0"
+          :style="
+            navTheme === 'dark' ? 'background: #07162a;' : 'background: #fff'
+          "
+        >
           <a-icon
             v-if="navLayout === 'left'"
             class="trigger"
             :type="collapsed ? 'menu-unfold' : 'menu-fold'"
+            :style="navTheme === 'dark' ? 'color: #fff;' : 'color: #07162a;'"
             @click="collapsed = !collapsed"
           ></a-icon>
           <Header style="margin: auto" />
@@ -87,5 +92,9 @@ export default {
 
 .nav-theme-dark >>> .logo {
   color: #ffffff;
+}
+
+.nav-theme-dark >>> .trigger:hover {
+  background: #07162a;
 }
 </style>

@@ -19,7 +19,6 @@ export default {
   },
   methods: {
     getChartData() {
-      sessionStorage.setItem("session", "d5104dc76695721d");
       let timestamp = new Date().getTime();
       let rand = Math.ceil(100000000000 * Math.random()) + "";
       let sign = this.$sha256(

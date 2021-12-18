@@ -31,7 +31,7 @@
               @change="(e) => handleSettingChange('navLayout', e)"
             >
               <a-radio value="left"> 左侧</a-radio>
-              <a-radio value="top"> 顶部</a-radio>
+              <a-radio value="top"> 隐藏</a-radio>
             </a-radio-group>
           </div>
         </template>

@@ -1,13 +1,43 @@
+import request from "@/utils/request";
+import md5 from "js-md5";
+import sha256 from "js-sha256";
+
 export function getCurrentAuthority() {
-  return ["admin"];
+  return sessionStorage.getItem("auth");
 }
 
 export function check(authorith) {
   const current = getCurrentAuthority();
-  return current.some((item) => authorith.includes(item));
+  return authorith >= current;
 }
 
 export function isLogin() {
-  const current = getCurrentAuthority();
-  return current && current[0] !== "guest";
+  return sessionStorage.getItem("session") !== null;
+}
+
+export function pullCurrentAuthority() {
+  let timestamp = new Date().getTime();
+  let rand = Math.ceil(100000000000 * Math.random()) + "";
+  let sign = sha256(
+    md5(sessionStorage.getItem("session")) +
+      timestamp +
+      sessionStorage.getItem("key") +
+      rand
+  );
+  request({
+    method: "get",
+    url: "/api/user/auth/" + sessionStorage.getItem("session"),
+    headers: {
+      timestamp: timestamp,
+      rand: rand,
+      sign: sign,
+    },
+  })
+    .then((response) => {
+      console.log(response);
+      sessionStorage.setItem("auth", response.data.auth);
+    })
+    .catch((err) => {
+      console.log("auth" + err);
+    });
 }

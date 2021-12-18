@@ -1,46 +1,33 @@
 <template>
-  <a-form :layout="formLayout" :form="form">
-    <a-form-item
-      label="Form Layout"
-      :label-col="formItemLayout.labelCol"
-      :wrapper-col="formItemLayout.wrapperCol"
-    >
-      <a-radio-group
-        default-value="horizontal"
-        @change="handleFormLayoutChange"
+  <div style="margin: 100px">
+    <a-form :form="form" :layout="formLayout">
+      <a-form-item
+        :label-col="formItemLayout.labelCol"
+        :wrapper-col="formItemLayout.wrapperCol"
+        label="原密码"
       >
-        <a-radio-button value="horizontal"> Horizontal </a-radio-button>
-        <a-radio-button value="vertical"> Vertical </a-radio-button>
-        <a-radio-button value="inline"> Inline </a-radio-button>
-      </a-radio-group>
-    </a-form-item>
-    <a-form-item
-      label="Field A"
-      :label-col="formItemLayout.labelCol"
-      :wrapper-col="formItemLayout.wrapperCol"
-    >
-      <a-input
-        v-decorator="[
-          'fieldA',
-          {
-            initiaValue: fieldA,
-            rules: [{ required: true, min: 6, message: '不能小于5位' }],
-          },
-        ]"
-        placeholder="input placeholder"
-      />
-    </a-form-item>
-    <a-form-item
-      label="Field B"
-      :label-col="formItemLayout.labelCol"
-      :wrapper-col="formItemLayout.wrapperCol"
-    >
-      <a-input v-decorator="['fieldB']" placeholder="input placeholder" />
-    </a-form-item>
-    <a-form-item :wrapper-col="buttonItemLayout.wrapperCol">
-      <a-button type="primary" @click="handleSubmit"> Submit </a-button>
-    </a-form-item>
-  </a-form>
+        <a-input
+          v-decorator="[
+            '原密码',
+            {
+              rules: [{ required: true, min: 6, message: '不能小于5位' }],
+            },
+          ]"
+          placeholder="请输入目前的密码"
+        />
+      </a-form-item>
+      <a-form-item
+        :label-col="formItemLayout.labelCol"
+        :wrapper-col="formItemLayout.wrapperCol"
+        label="新密码"
+      >
+        <a-input v-decorator="['新密码']" placeholder="请输入新的密码" />
+      </a-form-item>
+      <a-form-item :wrapper-col="buttonItemLayout.wrapperCol">
+        <a-button type="primary" @click="handleSubmit"> Submit</a-button>
+      </a-form-item>
+    </a-form>
+  </div>
 </template>
 
 <script>
@@ -50,15 +37,8 @@ export default {
     return {
       name: "BasicForm",
       formLayout: "horizontal",
-      fieldA: "",
-      fieldB: "",
     };
   },
-  // mounted() {
-  //   setInterval(() => {
-  //     this.form.setFieldsValue({ fieldA: "hellow world" });
-  //   }, 3000);
-  // },
   computed: {
     formItemLayout() {
       const { formLayout } = this;

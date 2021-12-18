@@ -41,7 +41,7 @@ const routes = [
   },
   {
     path: "/",
-    meta: { authority: ["user", "admin"] },
+    meta: { authority: 50 },
     component: () =>
       import(/* webpackChunkName: "layouts" */ "../layouts/BasicLayout"),
     children: [
@@ -81,7 +81,7 @@ const routes = [
         path: "/form",
         name: "form",
         component: { render: (h) => h("router-view") },
-        meta: { icon: "form", title: "用户管理", authority: ["admin"] },
+        meta: { icon: "form", title: "用户管理", authority: 10 },
         children: [
           {
             path: "/form/add-user-form",
@@ -109,7 +109,7 @@ const routes = [
         // name: "exception",
         component: { render: (h) => h("router-view") },
         redirect: "/exception/403",
-        meta: { title: "异常页", icon: "warning", authority: ["admin"] },
+        meta: { title: "异常页", icon: "warning", authority: 100 },
         children: [
           {
             path: "/exception/403",
@@ -169,7 +169,12 @@ router.beforeEach((to, from, next) => {
     NProgress.start();
   }
   const record = findLast(to.matched, (record) => record.meta.authority);
-  if (record && !check(record.meta.authority)) {
+  if (
+    record &&
+    record.meta &&
+    record.meta.authority &&
+    !check(record.meta.authority)
+  ) {
     if (!isLogin() && to.path !== "/user/login") {
       next({
         path: "/user/login",

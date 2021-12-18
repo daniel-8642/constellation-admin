@@ -1,32 +1,34 @@
 <template>
-  <a-form :layout="formLayout" :form="form">
-    <a-form-item
-      label="Field A"
-      :label-col="formItemLayout.labelCol"
-      :wrapper-col="formItemLayout.wrapperCol"
-    >
-      <a-input
-        v-decorator="[
-          'fieldA',
-          {
-            initiaValue: fieldA,
-            rules: [{ required: true, min: 6, message: '不能小于5位' }],
-          },
-        ]"
-        placeholder="input placeholder"
-      />
-    </a-form-item>
-    <a-form-item
-      label="Field B"
-      :label-col="formItemLayout.labelCol"
-      :wrapper-col="formItemLayout.wrapperCol"
-    >
-      <a-input v-decorator="['fieldB']" placeholder="input placeholder" />
-    </a-form-item>
-    <a-form-item :wrapper-col="buttonItemLayout.wrapperCol">
-      <a-button type="primary" @click="handleSubmit"> Submit </a-button>
-    </a-form-item>
-  </a-form>
+  <div style="margin: 100px">
+    <a-form :form="form" :layout="formLayout">
+      <a-form-item
+        :label-col="formItemLayout.labelCol"
+        :wrapper-col="formItemLayout.wrapperCol"
+        label="Field A"
+      >
+        <a-input
+          v-decorator="[
+            'fieldA',
+            {
+              initiaValue: fieldA,
+              rules: [{ required: true, min: 6, message: '不能小于5位' }],
+            },
+          ]"
+          placeholder="input placeholder"
+        />
+      </a-form-item>
+      <a-form-item
+        :label-col="formItemLayout.labelCol"
+        :wrapper-col="formItemLayout.wrapperCol"
+        label="Field B"
+      >
+        <a-input v-decorator="['fieldB']" placeholder="input placeholder" />
+      </a-form-item>
+      <a-form-item :wrapper-col="buttonItemLayout.wrapperCol">
+        <a-button type="primary" @click="handleSubmit"> Submit</a-button>
+      </a-form-item>
+    </a-form>
+  </div>
 </template>
 
 <script>
@@ -40,11 +42,6 @@ export default {
       fieldB: "",
     };
   },
-  // mounted() {
-  //   setInterval(() => {
-  //     this.form.setFieldsValue({ fieldA: "hellow world" });
-  //   }, 3000);
-  // },
   computed: {
     formItemLayout() {
       const { formLayout } = this;
