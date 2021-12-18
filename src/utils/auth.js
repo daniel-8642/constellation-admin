@@ -7,12 +7,15 @@ export function getCurrentAuthority() {
 }
 
 export function check(authorith) {
+  if (!isLogin()) {
+    return false;
+  }
   const current = getCurrentAuthority();
   return authorith >= current;
 }
 
 export function isLogin() {
-  return sessionStorage.getItem("session") !== null;
+  return sessionStorage.getItem("session") != null;
 }
 
 export function pullCurrentAuthority() {

@@ -1,7 +1,7 @@
 <template>
   <div :style="navTheme === 'dark' ? 'color: #fff;' : 'color: #07162a;'">
     19052164
-    <a class="logout" @click="$router.push('/user/login')">注销</a>
+    <a class="logout" @click="logout">注销</a>
   </div>
 </template>
 
@@ -11,6 +11,12 @@ export default {
   computed: {
     navTheme() {
       return this.$route.query.navTheme || "dark";
+    },
+  },
+  methods: {
+    logout() {
+      sessionStorage.removeItem("session");
+      this.$router.push("/user/login");
     },
   },
 };

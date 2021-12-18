@@ -169,12 +169,8 @@ router.beforeEach((to, from, next) => {
     NProgress.start();
   }
   const record = findLast(to.matched, (record) => record.meta.authority);
-  if (
-    record &&
-    record.meta &&
-    record.meta.authority &&
-    !check(record.meta.authority)
-  ) {
+  console.log(record);
+  if (record && !check(record.meta.authority + 1)) {
     if (!isLogin() && to.path !== "/user/login") {
       next({
         path: "/user/login",
