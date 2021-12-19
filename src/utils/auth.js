@@ -29,7 +29,7 @@ export function pullCurrentAuthority() {
   );
   request({
     method: "get",
-    url: "/api/user/auth/" + sessionStorage.getItem("session"),
+    url: "/user/auth/" + sessionStorage.getItem("session"),
     headers: {
       timestamp: timestamp,
       rand: rand,

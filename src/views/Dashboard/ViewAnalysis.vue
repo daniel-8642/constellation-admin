@@ -28,7 +28,7 @@ export default {
           rand
       );
       request({
-        url: "/api/data/querycount/" + sessionStorage.getItem("session"),
+        url: "/data/querycount/" + sessionStorage.getItem("session"),
         method: "get",
         headers: {
           timestamp: timestamp,

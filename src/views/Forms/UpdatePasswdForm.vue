@@ -86,7 +86,7 @@ export default {
           );
           request({
             url:
-              "/api/user/" +
+              "/user/" +
               sessionStorage.getItem("session") +
               "/" +
               values.原密码 +

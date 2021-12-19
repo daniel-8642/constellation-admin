@@ -129,7 +129,7 @@ export default {
           }
           request({
             method: "get",
-            url: "/api/user/login/" + values.Username + "/" + values.Password,
+            url: "/user/login/" + values.Username + "/" + values.Password,
           })
             .then((response) => {
               sessionStorage.setItem("session", response.data.session);
@@ -144,7 +144,7 @@ export default {
               );
               return request({
                 method: "get",
-                url: "/api/user/auth/" + sessionStorage.getItem("session"),
+                url: "/user/auth/" + sessionStorage.getItem("session"),
                 headers: {
                   timestamp: timestamp,
                   rand: rand,

@@ -102,7 +102,7 @@ export default {
           );
           request({
             url:
-              "/api/user/" +
+              "/user/" +
               values.新用户名 +
               "/" +
               values.新用户密码 +

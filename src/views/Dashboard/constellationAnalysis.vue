@@ -28,7 +28,7 @@ export default {
           rand
       );
       request({
-        url: "/api/data/starcount/" + sessionStorage.getItem("session"),
+        url: "/data/starcount/" + sessionStorage.getItem("session"),
         method: "get",
         headers: {
           timestamp: timestamp,

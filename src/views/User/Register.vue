@@ -95,7 +95,7 @@ export default {
         if (!err) {
           request({
             method: "post",
-            url: "/api/user/" + values.Username + "/" + values.Password,
+            url: "/user/" + values.Username + "/" + values.Password,
           })
             .then((response) => {
               console.log(response);

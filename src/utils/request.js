@@ -1,6 +1,7 @@
 import axios from "axios";
 import { notification } from "ant-design-vue";
 async function request(options) {
+  // options.url="http://localhost:8080"+options.url;
   return axios(options)
     .then((res) => {
       return res;
