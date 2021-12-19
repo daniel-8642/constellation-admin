@@ -66,7 +66,9 @@
             >
               Remember me
             </a-checkbox>
-            <a class="login-form-forgot" href=""> Forgot password </a>
+            <a class="login-form-forgot" @click="forgotpasswd">
+              Forgot password
+            </a>
             <a-button
               class="login-form-button"
               html-type="submit"
@@ -112,6 +114,7 @@ import request from "@/utils/request";
 import router from "@/router";
 import sha256 from "js-sha256";
 import md5 from "js-md5";
+import { notification } from "ant-design-vue";
 
 export default {
   name: "Login",
@@ -219,6 +222,15 @@ export default {
               console.log(err);
             });
         }
+      });
+    },
+    forgotpasswd() {
+      notification.open({
+        message: "忘记密码",
+        description: "本系统属于内部系统,请联系管理员859926750@qq.com重置密码",
+        onClick: () => {
+          console.log("forgotpasswd Clicked!");
+        },
       });
     },
   },
