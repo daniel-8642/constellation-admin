@@ -1,5 +1,5 @@
 <template>
-  <div>Ant Design VUE ©2021 Created by daniel</div>
+  <div>Copyright © 王海涛19052164.</div>
 </template>
 
 <script>

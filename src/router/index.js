@@ -168,6 +168,7 @@ router.beforeEach((to, from, next) => {
   if (to.path !== from.path) {
     NProgress.start();
   }
+  document.title = "星座运势数据统计";
   const record = findLast(to.matched, (record) => record.meta.authority);
   console.log(record);
   if (record && !check(record.meta.authority + 1)) {

@@ -80,7 +80,9 @@
     <div>
       Copyright &copy; 王海涛19052164.
       <div>
-        <a>Terms of Service</a>
+        <a href="https://gitee.com/daniel8642/constellation-fortune-backend"
+          >Terms of Service</a
+        >
       </div>
     </div>
   </div>

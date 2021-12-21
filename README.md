@@ -1,29 +1,17 @@
-# my-ant-design-vue-pro
+# vue
 
-## Project setup
-```
-npm install
-```
+这个项目是一个星座运势查询网页端的数据后台
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+项目效果
+http://back.86428642.xyz/
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Run your unit tests
-```
-npm run test:unit
-```
+项目地址
+https://gitee.com/daniel8642/constellation-chart-backend
 
-### Lints and fixes files
-```
-npm run lint
-```
+前台项目:
+https://gitee.com/daniel8642/vue-constellation-chart
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+后端项目:
+https://gitee.com/daniel8642/constellation-fortune-backend
+
