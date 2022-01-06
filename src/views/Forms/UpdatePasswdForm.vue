@@ -40,6 +40,7 @@
 
 <script>
 import request from "@/utils/request";
+import { sha256, md5 } from "@/utils/crypto";
 import { notification } from "ant-design-vue";
 export default {
   data() {
@@ -78,8 +79,8 @@ export default {
           console.log(values);
           let timestamp = new Date().getTime();
           let rand = Math.ceil(100000000000 * Math.random()) + "";
-          let sign = this.$sha256(
-            this.$md5(sessionStorage.getItem("session")) +
+          let sign = sha256(
+            md5(sessionStorage.getItem("session")) +
               timestamp +
               sessionStorage.getItem("key") +
               rand

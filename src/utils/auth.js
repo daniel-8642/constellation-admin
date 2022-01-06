@@ -1,6 +1,5 @@
 import request from "@/utils/request";
-import md5 from "js-md5";
-import sha256 from "js-sha256";
+import { sha256, md5 } from "@/utils/crypto";
 
 export function getCurrentAuthority() {
   return sessionStorage.getItem("auth");

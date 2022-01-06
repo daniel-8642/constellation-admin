@@ -93,9 +93,10 @@ export default {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
+          let pass = values.Password;
           request({
             method: "post",
-            url: "/user/" + values.Username + "/" + values.Password,
+            url: "/user/" + values.Username + "/" + pass,
           })
             .then((response) => {
               console.log(response);

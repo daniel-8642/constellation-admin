@@ -7,6 +7,7 @@
 <script>
 import Chart from "@/components/Chart";
 import request from "@/utils/request";
+import { sha256, md5 } from "@/utils/crypto";
 export default {
   name: "Analysis",
   components: { Chart },
@@ -21,8 +22,8 @@ export default {
     getChartData() {
       let timestamp = new Date().getTime();
       let rand = Math.ceil(100000000000 * Math.random()) + "";
-      let sign = this.$sha256(
-        this.$md5(sessionStorage.getItem("session")) +
+      let sign = sha256(
+        md5(sessionStorage.getItem("session")) +
           timestamp +
           sessionStorage.getItem("key") +
           rand

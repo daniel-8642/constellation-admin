@@ -92,9 +92,8 @@
 import { pullCurrentAuthority } from "@/utils/auth";
 import request from "@/utils/request";
 import router from "@/router";
-import sha256 from "js-sha256";
-import md5 from "js-md5";
 import { notification } from "ant-design-vue";
+import { sha256, md5 } from "@/utils/crypto";
 
 export default {
   name: "Login",
