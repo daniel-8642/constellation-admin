@@ -40,7 +40,7 @@
 
 <script>
 import request from "@/utils/request";
-import { sha256, md5 } from "@/utils/crypto";
+import { sha256, md5, hmac } from "@/utils/crypto";
 import { notification } from "ant-design-vue";
 export default {
   data() {
@@ -90,9 +90,9 @@ export default {
               "/user/" +
               sessionStorage.getItem("session") +
               "/" +
-              values.原密码 +
+              hmac(values.原密码) +
               "/" +
-              values.新密码,
+              hmac(values.新密码),
             method: "put",
             headers: {
               timestamp: timestamp,

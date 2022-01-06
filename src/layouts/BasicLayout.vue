@@ -1,5 +1,4 @@
 <template>
-  <!--  todo:弄懂:class="[`nav-theme-${navTheme}`, `nav-layout-${navLayout}`]"-->
   <div :class="[`nav-theme-${navTheme}`, `nav-layout-${navLayout}`]">
     <a-layout id="components-layout-demo-side" style="min-height: 100vh">
       <a-layout-sider

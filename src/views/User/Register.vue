@@ -77,6 +77,7 @@
 <script>
 import request from "@/utils/request";
 import { notification } from "ant-design-vue";
+import { hmac } from "@/utils/crypto";
 
 export default {
   name: "Login",
@@ -93,10 +94,9 @@ export default {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          let pass = values.Password;
           request({
             method: "post",
-            url: "/user/" + values.Username + "/" + pass,
+            url: "/user/" + values.Username + "/" + hmac(values.Password),
           })
             .then((response) => {
               console.log(response);

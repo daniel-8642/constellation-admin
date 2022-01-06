@@ -93,7 +93,7 @@ import { pullCurrentAuthority } from "@/utils/auth";
 import request from "@/utils/request";
 import router from "@/router";
 import { notification } from "ant-design-vue";
-import { sha256, md5 } from "@/utils/crypto";
+import { sha256, md5, hmac } from "@/utils/crypto";
 
 export default {
   name: "Login",
@@ -128,9 +128,10 @@ export default {
             sessionStorage.removeItem("Username");
             sessionStorage.removeItem("Password");
           }
+          console.log(hmac(values.Password));
           request({
             method: "get",
-            url: "/user/login/" + values.Username + "/" + values.Password,
+            url: "/user/login/" + values.Username + "/" + hmac(values.Password),
           })
             .then((response) => {
               sessionStorage.setItem("session", response.data.session);

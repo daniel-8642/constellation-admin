@@ -55,7 +55,7 @@
 
 <script>
 import request from "@/utils/request";
-import { sha256, md5 } from "@/utils/crypto";
+import { sha256, md5, hmac } from "@/utils/crypto";
 import { notification } from "ant-design-vue";
 export default {
   data() {
@@ -106,7 +106,7 @@ export default {
               "/user/" +
               values.新用户名 +
               "/" +
-              values.新用户密码 +
+              hmac(values.新用户密码) +
               "/" +
               sessionStorage.getItem("session") +
               "/" +
