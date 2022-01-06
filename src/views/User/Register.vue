@@ -106,7 +106,8 @@ export default {
                 });
               }
               sessionStorage.removeItem("session");
-              this.$router.push("/user/login");
+              // this.$router.push("/user/login");
+              this.$router.push("/user/register-result");
             })
             .catch((err) => {
               console.log(err);

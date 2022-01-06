@@ -1,21 +1,4 @@
-<template>
-  <div>
-    <p style="margin-top: 70px; margin-bottom: 0; font-size: 30px">注册成功</p>
-    <panda-icon style="margin: 0 auto; font-size: 300px" /><br />
-    <a-button
-      class="login-form-button"
-      html-type="submit"
-      type="primary"
-      @click="$router.push('/user/login')"
-      style="margin: 0 auto"
-      >返回</a-button
-    >
-  </div>
-</template>
-
-<script>
-const PandaSvg = {
-  template: `
+<?xml version="1.0" encoding="UTF-8"?>
 <svg width="480px" height="480px" viewBox="0 0 480 480" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
     <title>成功</title>
@@ -76,25 +59,3 @@ const PandaSvg = {
         </g>
     </g>
 </svg>
-  `,
-};
-
-const PandaIcon = {
-  template: `
-    <a-icon :component="PandaSvg" />
-  `,
-  data() {
-    return {
-      PandaSvg,
-    };
-  },
-};
-
-export default {
-  components: {
-    PandaIcon,
-  },
-};
-</script>
-
-<style scoped></style>
