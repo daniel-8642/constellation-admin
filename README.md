@@ -1,6 +1,6 @@
 本项目是星座运势查询网页端的数据后台
 
-详细项目信息请看[后端项目](https://gitee.com/daniel8642/constellation-fortune-backend)https://gitee.com/daniel8642/constellation-fortune-backend
+详细项目信息请看[后端项目](https://gitee.com/daniel8642/constellation-fortune-backend)
 
 修改自[我的vue手脚架项目](https://gitee.com/daniel8642/vue-base)
 
@@ -32,16 +32,14 @@ Ant Design Vue组件库
 
 echarts图标库
 
-项目效果
-http://back.86428642.xyz/
+用户界面
 
+https://gitee.com/daniel8642/constellation-user
 
-项目地址
-https://gitee.com/daniel8642/constellation-chart-backend
+管理界面
 
-前台项目:
-https://gitee.com/daniel8642/vue-constellation-chart
+https://gitee.com/daniel8642/constellation-admin
 
-后端项目:
-https://gitee.com/daniel8642/constellation-fortune-backend
+后端项目
 
+https://gitee.com/daniel8642/constellation-backend
